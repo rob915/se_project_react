@@ -9,6 +9,10 @@
 }
 
 .header__date-location {
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
   margin: 0;
 }
 
@@ -19,9 +23,17 @@
 }
 
 .header__add-clothes-btn {
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
   margin: 0 20px 0 auto;
 }
 
 .header__user-name {
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
   margin: 0;
 }

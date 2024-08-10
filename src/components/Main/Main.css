@@ -1,3 +1,18 @@
 .cards__text {
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.8px;
+  margin: 40px 0 34px;
+}
+
+.cards__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 323px);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  justify-content: center;
+  list-style-type: none;
   margin: 0;
+  padding: 0;
 }

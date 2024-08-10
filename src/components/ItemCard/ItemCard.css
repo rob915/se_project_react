@@ -1,8 +1,26 @@
 .card {
+  width: 323px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #0000004d;
 }
 
 .card__title {
+  position: absolute;
+  top: 15px;
+  margin: 0;
+  padding: 0 4px 0;
+  background-color: #fff;
+  font-family: Cabinet Grotesk;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  border-radius: 4px;
 }
 
 .card__image {
+  width: 100%;
 }

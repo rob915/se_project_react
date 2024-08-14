@@ -1,7 +1,7 @@
 .footer {
   display: flex;
   justify-content: space-between;
-  margin: 85px 0 24px;
+  margin: 85px 0 0;
 }
 
 .footer__name {

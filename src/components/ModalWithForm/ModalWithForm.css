@@ -19,7 +19,7 @@
   position: relative;
   background-color: white;
   padding: 28px 28px 36px;
-  max-width: 496px;
+  max-width: 498px;
   box-sizing: border-box;
   width: 100%;
   border-radius: 20px;
@@ -105,6 +105,7 @@
 .modal__radio-input {
   margin-right: 10px;
   padding: 0;
+  color: #000;
 }
 
 .modal__submit {
@@ -113,7 +114,8 @@
   border-radius: 4px;
   margin: 32px 0 0;
   color: #fff;
-  background-color: #000;
+  background: #000;
+  border: none;
   padding: 0;
 }
 

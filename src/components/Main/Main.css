@@ -9,7 +9,6 @@
 .cards__list {
   display: grid;
   grid-template-columns: repeat(auto-fit, 323px);
-  grid-template-rows: repeat(2, 1fr);
   gap: 20px;
   justify-content: center;
   list-style-type: none;

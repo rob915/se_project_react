@@ -1,23 +1,31 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { coordinates, APIkey } from "../../utils/constants";
+import {
+  coordinates,
+  APIkey,
+  defaultClothingItems,
+} from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import AddItemModal from "../../AddItemModal/AddItemModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: "" },
+    temp: { F: "", C: "" },
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([...defaultClothingItems]);
 
   const closeActiveModal = () => {
     setActiveModal("");
@@ -33,9 +41,19 @@ function App() {
   };
 
   const handleToggleSwitchChange = () => {
-    if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
-    if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
+    currentTemperatureUnit === "F"
+      ? setCurrentTemperatureUnit("C")
+      : setCurrentTemperatureUnit("F");
   };
+
+  const onAddItem = (item) => {
+    setClothingItems([item, ...clothingItems]);
+  };
+
+  // const handleToggleSwitchChange = () => {
+  //   if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
+  //   if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
+  // };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -46,8 +64,6 @@ function App() {
       .catch(console.error);
   }, []);
 
-  console.log(`App value - ${currentTemperatureUnit}`);
-
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -55,79 +71,38 @@ function App() {
       >
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main
-            weatherData={weatherData}
-            handleCardClick={handleCardClick}
-          ></Main>
+
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
+          </Routes>
+
           <Footer />
         </div>
 
-        <ModalWithForm
+        <AddItemModal
+          closeActiveModal={closeActiveModal}
           isOpen={activeModal === "add-garment"}
-          title="New garmnet"
-          buttonText="Add garment"
-          onClose={closeActiveModal}
-        >
-          <label htmlFor="name" className="modal__label">
-            Name{" "}
-            <input
-              type="text"
-              className="modal__input"
-              id="name"
-              placeholder="Name"
-            />
-          </label>
-          <label htmlFor="imageUrl" className="modal__label">
-            Image{" "}
-            <input
-              type="text"
-              className="modal__input modal__input-imageUrl"
-              id="imageUrl"
-              placeholder="Image URL"
-            />
-          </label>
-          <fieldset className="modal__radio-buttons">
-            <legend className="modal__legend">Select the weather type</legend>
-            <div className="modal__label-container">
-              <label
-                htmlFor="hot"
-                className="modal__label modal__label_type_radio"
-              >
-                <input
-                  id="hot"
-                  type="radio"
-                  className="modal__radio-input"
-                  name="selected-temp"
-                />
-                Hot
-              </label>
-              <label
-                htmlFor="warm"
-                className="modal__label modal__label_type_radio"
-              >
-                <input
-                  id="warm"
-                  type="radio"
-                  className="modal__radio-input"
-                  name="selected-temp"
-                />
-                Warm
-              </label>
-              <label
-                htmlFor="cold"
-                className="modal__label modal__label_type_radio"
-              >
-                <input
-                  id="cold"
-                  type="radio"
-                  className="modal__radio-input"
-                  name="selected-temp"
-                />
-                Cold
-              </label>
-            </div>
-          </fieldset>
-        </ModalWithForm>
+          onAddItem={onAddItem}
+        />
 
         <ItemModal
           isOpen={activeModal === "preview"}

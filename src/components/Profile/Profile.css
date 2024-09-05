@@ -1,0 +1,8 @@
+.profile {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile__clothing-items {
+  margin: 0 0 0 116px;
+}

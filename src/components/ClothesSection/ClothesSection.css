@@ -1,0 +1,21 @@
+.clothes-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.clothes-section__context-container {
+  display: flex;
+}
+
+.clothes-section__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.clothes-section__button {
+  border: none;
+  margin: 0 0 0 16px;
+}

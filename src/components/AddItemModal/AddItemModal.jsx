@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import ModalWithForm from "../components/ModalWithForm/ModalWithForm";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
+const AddItemModal = ({
+  closeActiveModal,
+  onAddItem,
+  isOpen,
+  clickCloseModal,
+}) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -31,6 +36,7 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
       buttonText="Add garment"
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
+      clickCloseModal={clickCloseModal}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}

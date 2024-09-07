@@ -6,15 +6,12 @@ function ModalWithForm({
   buttonText,
   title,
   onClose,
-  onSubmit, //formelement.addEventListener("submit", ()=>{})
+  onSubmit,
+  clickCloseModal,
 }) {
   return (
     <div
-      onClick={(e) => {
-        if (e.target.classList.contains("modal_opened")) {
-          onClose();
-        }
-      }}
+      onClick={clickCloseModal}
       className={`modal ${isOpen ? "modal_opened" : ""}`}
     >
       <div className="modal__content">

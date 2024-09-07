@@ -14,7 +14,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import AddItemModal from "../../AddItemModal/AddItemModal";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, postItem, deleteItem } from "../../utils/api";
 
 function App() {
@@ -32,7 +32,14 @@ function App() {
     setActiveModal("");
   };
 
-  const clickOutCloseModal = {};
+  const clickCloseModal = (e) => {
+    if (
+      e.target.classList.contains("modal_opened") ||
+      e.target.classList.contains("modal__close")
+    ) {
+      closeActiveModal();
+    }
+  };
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -50,7 +57,6 @@ function App() {
   };
 
   const onAddItem = (item) => {
-    console.log(item);
     postItem(item).then((newItem) => {
       setClothingItems([newItem, ...clothingItems]);
     });
@@ -121,6 +127,7 @@ function App() {
 
         <AddItemModal
           closeActiveModal={closeActiveModal}
+          clickCloseModal={clickCloseModal}
           isOpen={activeModal === "add-garment"}
           onAddItem={onAddItem}
         />
@@ -129,6 +136,7 @@ function App() {
           isOpen={activeModal === "preview"}
           card={selectedCard}
           onClose={closeActiveModal}
+          clickCloseModal={clickCloseModal}
           handleDeleteCard={onDeleteCard}
         />
       </CurrentTemperatureUnitContext.Provider>

@@ -101,24 +101,6 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
-    },
-    {
-      "name": "Wool Sweater",
-      "imageUrl": "https://cdni.llbean.net/is/image/wim/505183_1155_41?hei=1095&wid=950&resMode=sharp2&defaultImage=llbprod/505183_1155_41",
-      "weather": "cold",
-      "_id": 17
-    },
-    {
-      "name": "Wool Sweater 2",
-      "imageUrl": "https://cdni.llbean.net/is/image/wim/505183_1155_41?hei=1095&wid=950&resMode=sharp2&defaultImage=llbprod/505183_1155_41",
-      "weather": "cold",
-      "_id": 18
-    },
-    {
-      "name": "Bucket Hat",
-      "imageUrl": "https://eu-images.contentstack.com/v3/assets/blt7dcd2cfbc90d45de/bltb54a50e979b1f24b/64e896255e185aff20d31a42/42-1-additcappa.jpg?format=pjpg&auto=webp&quality=75%2C90&width=3840",
-      "weather": "warm",
-      "_id": 19
     }
   ]
 }

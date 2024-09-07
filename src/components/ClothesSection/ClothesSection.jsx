@@ -1,12 +1,7 @@
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
-const ClothesSection = ({
-  weatherData,
-  handleCardClick,
-  clothingItems,
-  handleAddClick,
-}) => {
+const ClothesSection = ({ handleCardClick, clothingItems, handleAddClick }) => {
   return (
     <div className="clothes-section">
       <div className="clothes-section__context-container">

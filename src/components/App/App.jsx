@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import {
-  coordinates,
-  APIkey,
-  defaultClothingItems,
-} from "../../utils/constants";
+import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -57,20 +52,29 @@ function App() {
   };
 
   const onAddItem = (item) => {
-    postItem(item).then((newItem) => {
-      setClothingItems([newItem, ...clothingItems]);
-    });
+    postItem(item)
+      .then((newItem) => {
+        setClothingItems([newItem, ...clothingItems]);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const onDeleteCard = ({ _id }) => {
-    deleteItem(_id).then(() => {
-      setClothingItems(
-        clothingItems.filter((item) => {
-          return item._id !== _id;
-        })
-      );
-      closeActiveModal();
-    });
+    deleteItem(_id)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((item) => {
+            return item._id !== _id;
+          })
+        );
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   useEffect(() => {

@@ -2,7 +2,12 @@ import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import "./Profile.css";
 
-const Profile = ({ weatherData, handleCardClick, clothingItems }) => {
+const Profile = ({
+  weatherData,
+  handleCardClick,
+  clothingItems,
+  handleAddClick,
+}) => {
   return (
     <div className="profile">
       <section className="profile__sidebar">
@@ -13,6 +18,7 @@ const Profile = ({ weatherData, handleCardClick, clothingItems }) => {
           weatherData={weatherData}
           handleCardClick={handleCardClick}
           clothingItems={clothingItems}
+          handleAddClick={handleAddClick}
         />
       </section>
     </div>

@@ -15,6 +15,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../../AddItemModal/AddItemModal";
+import { getItems, postItem, deleteItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -25,11 +26,13 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState([...defaultClothingItems]);
+  const [clothingItems, setClothingItems] = useState([]);
 
   const closeActiveModal = () => {
     setActiveModal("");
   };
+
+  const clickOutCloseModal = {};
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -47,19 +50,36 @@ function App() {
   };
 
   const onAddItem = (item) => {
-    setClothingItems([item, ...clothingItems]);
+    console.log(item);
+    postItem(item).then((newItem) => {
+      setClothingItems([newItem, ...clothingItems]);
+    });
   };
 
-  // const handleToggleSwitchChange = () => {
-  //   if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
-  //   if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
-  // };
+  const onDeleteCard = ({ _id }) => {
+    deleteItem(_id).then(() => {
+      setClothingItems(
+        clothingItems.filter((item) => {
+          return item._id !== _id;
+        })
+      );
+      closeActiveModal();
+    });
+  };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        setClothingItems(data.reverse());
       })
       .catch(console.error);
   }, []);
@@ -90,6 +110,7 @@ function App() {
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             />
@@ -108,6 +129,7 @@ function App() {
           isOpen={activeModal === "preview"}
           card={selectedCard}
           onClose={closeActiveModal}
+          handleDeleteCard={onDeleteCard}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

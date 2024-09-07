@@ -1,8 +1,13 @@
 .profile {
   display: flex;
   flex-direction: row;
+  gap: 116px;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.8px;
 }
 
 .profile__clothing-items {
-  margin: 0 0 0 116px;
+  margin: 0;
 }

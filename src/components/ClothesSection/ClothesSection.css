@@ -5,6 +5,28 @@
 
 .clothes-section__context-container {
   display: flex;
+  margin: 16px 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: Cabinet Grotesk;
+  line-height: 24.8px;
+}
+
+.clothes-section__title {
+  margin: 0;
+  text-align: left;
+}
+
+.clothes-section__button {
+  border: none;
+  margin: 0 0 0 16px;
+  padding: 0;
+  color: #00000099;
+}
+
+.clothes-section__button:hover {
+  color: #000;
+  cursor: pointer;
 }
 
 .clothes-section__list {
@@ -13,9 +35,4 @@
   gap: 20px;
   padding: 0;
   margin: 0;
-}
-
-.clothes-section__button {
-  border: none;
-  margin: 0 0 0 16px;
 }

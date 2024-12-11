@@ -33,7 +33,6 @@ const AddItemModal = ({
       isOpen={isOpen}
       // isOpen={activeModal === "add-garment"}
       title="New garmnet"
-      buttonText="Add garment"
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
       clickCloseModal={clickCloseModal}
@@ -104,6 +103,9 @@ const AddItemModal = ({
           </label>
         </div>
       </fieldset>
+      <button type="submit" className="modal__submit">
+        Add garment
+      </button>
     </ModalWithForm>
   );
 };

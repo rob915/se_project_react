@@ -21,11 +21,13 @@ function ModalWithForm({
           type="button"
           className="modal__close"
         ></button>
-        <form className="modal__form" onSubmit={onSubmit}>
+        <form
+          className="modal__form"
+          onSubmit={(e) => {
+            onSubmit(e);
+          }}
+        >
           {children}
-          <button type="submit" className="modal__submit">
-            {buttonText}
-          </button>
         </form>
       </div>
     </div>

@@ -1,10 +1,11 @@
 import avatar from "../../assets/avatar.svg";
+import Avatar from "../Avatar/Avatar";
 import "./SideBar.css";
 
 const SideBar = () => {
   return (
     <div className="sidebar">
-      <img src={avatar} alt="Default Avatar" className="sidebar__avatar" />
+      <Avatar size={"100px"} />
       <p className="sidebar__username">Terrence Tegegne</p>
     </div>
   );

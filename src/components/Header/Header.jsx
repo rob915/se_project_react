@@ -4,7 +4,6 @@ import { useContext } from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.svg";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Avatar from "../Avatar/Avatar";
 
@@ -28,10 +27,18 @@ function Header({ handleAddClick, weatherData, onSignUpClick, onLoginClick }) {
       <ToggleSwitch />
       {!isLoggedIn && (
         <>
-          <button type="button" onClick={onSignUpClick}>
+          <button
+            className="header__button"
+            type="button"
+            onClick={onSignUpClick}
+          >
             Sign up
           </button>
-          <button type="button" onClick={onLoginClick}>
+          <button
+            className="header__button"
+            type="button"
+            onClick={onLoginClick}
+          >
             Log in
           </button>
         </>

@@ -3,7 +3,6 @@ import "./ModalWithForm.css";
 function ModalWithForm({
   isOpen,
   children,
-  buttonText,
   title,
   onClose,
   onSubmit,

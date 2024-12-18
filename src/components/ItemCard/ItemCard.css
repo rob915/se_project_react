@@ -9,9 +9,15 @@
   border: 1px solid #0000004d;
 }
 
-.card__title {
+.card__header {
   position: absolute;
   top: 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.card__title {
   margin: 0;
   padding: 0 12px;
   background-color: #fff;
@@ -20,6 +26,19 @@
   font-weight: 700;
   line-height: 20px;
   border-radius: 4px;
+}
+
+.card__like-button {
+  width: 18px;
+  height: 15px;
+  background: url(../../assets/inactive-like.svg) center no-repeat;
+  background-size: contain;
+  border: none;
+}
+
+.card__like-button_active {
+  background: url(../../assets/active-like.png) center no-repeat;
+  background-size: contain;
 }
 
 .card__image {

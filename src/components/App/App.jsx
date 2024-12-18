@@ -17,11 +17,15 @@ import {
   register,
   login,
   getUser,
+  updateProfile,
+  likeItem,
+  dislikeItem,
 } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -71,6 +75,15 @@ function App() {
     setSelectedCard(card);
   };
 
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile");
+  };
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+  };
+
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
       ? setCurrentTemperatureUnit("C")
@@ -103,6 +116,26 @@ function App() {
       });
   };
 
+  const handleCardLike = (isLiked, item) => {
+    if (!isLiked) {
+      likeItem(item._id, localStorage.getItem("jwt")).then((card) => {
+        const newClothingItemsArray = clothingItems.map((clothingItem) =>
+          clothingItem._id === item._id ? card : clothingItem
+        );
+        setClothingItems(newClothingItemsArray);
+      });
+    } else {
+      dislikeItem(item._id, localStorage.getItem("jwt")).then((card) => {
+        const newClothingItemsArray = clothingItems.map((clothingItem) =>
+          clothingItem._id === item._id ? card : clothingItem
+        );
+        setClothingItems(newClothingItemsArray);
+      });
+    }
+
+    //if that's successful, then you want to visually like the item
+  };
+
   const handleRegisterModalSubmit = (name, email, password, avatar) => {
     //fetch to create a new user
     return (
@@ -125,6 +158,15 @@ function App() {
     });
   };
 
+  const handleEditProfileModalSubmit = (name, avatar) => {
+    return updateProfile(name, avatar, localStorage.getItem("jwt")).then(
+      (user) => {
+        setCurrentUser(user);
+        closeActiveModal();
+      }
+    );
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -143,10 +185,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getUser(localStorage.getItem("jwt")).then((res) => {
-      setCurrentUser(res);
-      setIsLoggedIn(true);
-    });
+    getUser(localStorage.getItem("jwt"))
+      .then((res) => {
+        setCurrentUser(res);
+        setIsLoggedIn(true);
+      })
+      .catch(console.error);
   }, []);
 
   return (
@@ -173,6 +217,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -185,6 +230,8 @@ function App() {
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
+                      onEditProfileClick={handleEditProfileClick}
+                      onLogoutClick={handleLogoutClick}
                     />
                   </ProtectedRoute>
                 }
@@ -224,12 +271,21 @@ function App() {
             onClose={closeActiveModal}
             clickCloseModal={clickCloseModal}
             onRegisterModalSubmit={handleRegisterModalSubmit}
+            onLoginClick={handleLoginClick}
           />
+
           <LoginModal
             isOpen={activeModal === "login"}
             onClose={closeActiveModal}
             clickCloseModal={clickCloseModal}
             onLoginModalSubmit={handleLoginModalSubmit}
+            onRegisterClick={handleRegisterClick}
+          />
+          <EditProfileModal
+            isOpen={activeModal === "edit-profile"}
+            onClose={closeActiveModal}
+            clickCloseModal={clickCloseModal}
+            onEditProfileModalSubmit={handleEditProfileModalSubmit}
           />
         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>

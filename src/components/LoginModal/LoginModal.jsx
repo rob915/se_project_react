@@ -7,6 +7,7 @@ const LoginModal = ({
   isOpen,
   clickCloseModal,
   onLoginModalSubmit,
+  onRegisterClick,
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -63,8 +64,17 @@ const LoginModal = ({
         />
       </label>
 
-      <button>Next</button>
-      <button type="button"> or Log in</button>
+      <div className="modal__button-wrapper">
+        <button className="modal__button modal__button-submit">Log in</button>
+        <button
+          className="modal__button"
+          type="button"
+          onClick={onRegisterClick}
+        >
+          {" "}
+          or Sign up
+        </button>
+      </div>
     </ModalWithForm>
   );
 };

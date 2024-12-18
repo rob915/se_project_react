@@ -1,5 +1,9 @@
 const baseUrl = "http://localhost:3001";
 
+// function getToken(){
+//   return localStorage.getItem('jwt');
+// }
+
 const checkResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
@@ -9,8 +13,9 @@ function getItems() {
 }
 
 function postItem(item, jwt) {
+  //{name: sweater, weather: cold, imageUrl: http://sldkfj}
   return fetch(`${baseUrl}/items`, {
-    method: "post",
+    method: "POST",
     body: JSON.stringify(item),
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +26,27 @@ function postItem(item, jwt) {
 
 function deleteItem(id, jwt) {
   return fetch(`${baseUrl}/items/${id}`, {
-    method: "delete",
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${jwt}`,
+    },
+  }).then(checkResponse);
+}
+
+function likeItem(_id, jwt) {
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${jwt}`,
+    },
+  }).then(checkResponse);
+}
+
+function dislikeItem(_id, jwt) {
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${jwt}`,
@@ -49,6 +74,17 @@ function login(email, password) {
   }).then(checkResponse);
 }
 
+function updateProfile(name, avatar, jwt) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${jwt}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+}
+
 function getUser(jwt) {
   return fetch(`${baseUrl}/users/me`, {
     headers: {
@@ -57,4 +93,14 @@ function getUser(jwt) {
   }).then(checkResponse);
 }
 
-export { getItems, postItem, deleteItem, register, login, getUser };
+export {
+  getItems,
+  postItem,
+  deleteItem,
+  likeItem,
+  dislikeItem,
+  register,
+  login,
+  getUser,
+  updateProfile,
+};

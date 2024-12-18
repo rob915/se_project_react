@@ -7,11 +7,16 @@ const Profile = ({
   handleCardClick,
   clothingItems,
   handleAddClick,
+  onEditProfileClick,
+  onLogoutClick,
 }) => {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar />
+        <SideBar
+          onEditProfileClick={onEditProfileClick}
+          onLogoutClick={onLogoutClick}
+        />
       </section>
       <section className="profile__clothing-items">
         <ClothesSection

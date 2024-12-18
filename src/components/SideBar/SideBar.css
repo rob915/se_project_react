@@ -1,7 +1,13 @@
 .sidebar {
   display: flex;
+  flex-direction: column;
+}
+
+.sidebar__profile-info-wrapper {
+  display: flex;
   flex-direction: row;
   align-items: center;
+  margin: 0 0 24px;
 }
 
 .sidebar__avatar {
@@ -12,4 +18,17 @@
 .sidebar__username {
   margin: 0 0 0 16px;
   text-wrap: nowrap;
+}
+
+.sidebar__profile-button {
+  border: none;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 0;
+  text-align: left;
+}
+
+.sidebar__profile-button-edit {
+  margin: 0 0 8px;
 }

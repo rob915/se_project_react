@@ -1,7 +1,7 @@
 .switch__label {
   display: flex;
   position: relative;
-  margin: 0 20px 0 auto;
+  margin: 0 0 0 auto;
 }
 
 .switch__input {
@@ -26,12 +26,12 @@
 
 .switch__slider-F {
   top: 0;
-  left: 26px;
+  left: 2px;
 }
 
 .switch__slider-C {
   top: 0;
-  left: 2px;
+  left: 26px;
 }
 
 .switch__temp {
@@ -43,7 +43,7 @@
 .switch__temp-C {
   position: absolute;
   top: 2px;
-  left: 8px;
+  left: 36px;
   margin: 0;
   font-size: 20px;
 }
@@ -51,7 +51,7 @@
 .switch__temp-F {
   position: absolute;
   top: 2px;
-  left: 36px;
+  left: 8px;
   margin: 0;
   font-size: 20px;
 }

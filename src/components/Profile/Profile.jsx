@@ -9,6 +9,7 @@ const Profile = ({
   handleAddClick,
   onEditProfileClick,
   onLogoutClick,
+  onCardLike,
 }) => {
   return (
     <div className="profile">
@@ -24,6 +25,7 @@ const Profile = ({
           handleCardClick={handleCardClick}
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
+          onCardLike={onCardLike}
         />
       </section>
     </div>

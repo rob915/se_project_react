@@ -70,7 +70,9 @@ const EditProfileModal = ({
         />
       </label>
 
-      <button>Submit</button>
+      <div className="modal__button-wrapper">
+        <button className="modal__button modal__button-submit">Submit</button>
+      </div>
     </ModalWithForm>
   );
 };

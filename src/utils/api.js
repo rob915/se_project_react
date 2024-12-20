@@ -103,4 +103,5 @@ export {
   login,
   getUser,
   updateProfile,
+  checkResponse,
 };

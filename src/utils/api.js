@@ -1,4 +1,6 @@
-const baseUrl = "http://localhost:3001";
+import { baseUrl } from "./constants";
+
+// const baseUrl = "http://localhost:3001";
 
 // function getToken(){
 //   return localStorage.getItem('jwt');

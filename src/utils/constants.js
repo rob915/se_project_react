@@ -118,4 +118,9 @@ export const coordinates = {
   longitude: -75.6646759,
 };
 
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.weather.justlearning.net"
+    : "http://localhost:3001";
+
 export const APIkey = "c63463e51e72d109bbb3ff8bd03e4fce";
